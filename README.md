@@ -9,4 +9,4 @@ This is a fun project originating from a bet I made with a friend. With this too
 ## Usage
 `python3 redbull.py`
 
-![image](https://user-images.githubusercontent.com/46573198/148452523-3825c987-39fa-405a-877f-9399c2573550.png)
+
