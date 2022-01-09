@@ -1,5 +1,37 @@
+#!/bin/bash
 
-#-----------------------------------------------------------------------------------------------------
+#Stop the script if there is a sign of: unset variable to be called, non-zero exit status or piping from command with said status.
+#Basically it's a kill switch in case of any error.
+
+set -ueo pipefail
+exec > >(tee -a $PWD/redbull-result.log) 2>&1
+
+
+#Making log file more informative by additing timestamp
+currentdate=$(date '+%Y-%m-%d %H:%M:%S')
+echo "Script lauch: $currentdate"
+
+echo "Checking for Python3 and pip3" 
+
+#We will get recommendation to install necessarities if type returns fail, otherwise it's okay
+if ! type python3; then
+    echo "Please install python3 https://www.python.org/downloads/"
+elif ! type pip3; then
+    echo "Please install pip3 https://pip.pypa.io/en/stable/installation/"
+else
+    echo "Found Python3 and pip3 presence"
+fi
+
+#Making sure we have necessary pip packages
+
+#Because macOS uses bash 3 I couldn't use superior "cmd &>> txt.log", let's use "cmd >> txt.log 2>&1"
+#Perhaps it's for the better since 2>&1 makes it more universal
+pip3 show selenium || pip3 install selenium
+pip3 show beautifulsoup4 || pip3 install beautifulsoup4
+
+#Executing python from shell with heredoc, that hyphen (-) tells python to read from stdin (EOF).
+
+python3 - << EOF
 print("Getting RedBull Prices")
 
 try: 
@@ -42,11 +74,10 @@ resp = requests.get(url)
 html = resp.content
 parsed_html = BeautifulSoup(html, "html.parser")
 print("PEREKRESTOK: ", parsed_html.body.find('div', attrs={'class':'price-new'}).text)
-#EOF
 #-----------------------------------------------------------------------------------------------------
 url = "https://www.ozon.ru/product/red-bull-energeticheskiy-napitok-473-ml-138221686"
 
-s = Service("chromedriver location")
+s = Service("/Users/danielvazome/Downloads/chromedriver")
 wd = webdriver.Chrome(service=s)
 wd.get(url)
 time.sleep(10)
@@ -55,6 +86,6 @@ html = wd.page_source
 parsed_html = BeautifulSoup(html, "html.parser")
 prices = parsed_html.body.find("div", class_="c2h3 c2h9 c2e7").text
 print("OZON: ", prices)
+EOF
 
-#EOF
-#-----------------------------------------------------------------------------------------------------
+echo "Script finish: $currentdate"
