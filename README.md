@@ -2,8 +2,6 @@
 This is a fun project originating from a bet I made with a friend. With this tool you can check price of goods on variety of online grocers.
 
 ## Prerequisites
-- Bash 4
-  - Was released in 2009, I guess you shouldn't bother checking 😄
 - Python 3
   - BeautifulSoup4 package `pip3 install BeautifulSoup4`
   - selenium packge `pip3 install selenium`
