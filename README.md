@@ -1,5 +1,5 @@
 # price-grabber
-This is a fun project originating from a bet I made with a friend. With this tool you can check price of goods on variety of online grocers.
+With this tool you can check goods price on variety of online grocers. A fun project originating from a bet I made with a friend.
 
 Technically it can be used for casual webscrapping and data collection, but the general purpose for me is monitoring of Red Bull prices.
 
