@@ -17,4 +17,6 @@ macOS - `bash ./price-grabber.sh`
 
 Other - `./price-grabber.sh`
 
+Logs available under current working directory (where you launch the script) in `redbull-result.log` file
+
 https://user-images.githubusercontent.com/46573198/148727983-e3745679-0aee-443c-aea2-be780673de95.mp4
