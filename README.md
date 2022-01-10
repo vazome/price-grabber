@@ -11,6 +11,8 @@ Technically it can be used for general webscrapping and data collection, but the
   - Selenium packge `pip3 install selenium`
   - webdriver-manager packge `pip3 install webdriver-manager`
 ## Usage
+[Download script and example csv](https://github.com/vazome/price-grabber/tree/main/script), set your links and div classes in csv file and for a protected website edit url variable in script.
+
 macOS - `bash ./price-grabber.sh`
 
 Other - `./price-grabber.sh`
