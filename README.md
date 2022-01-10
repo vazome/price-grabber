@@ -4,7 +4,7 @@ This is a fun project originating from a bet I made with a friend. With this too
 ## Prerequisites
 - Python 3
   - BeautifulSoup4 package `pip3 install BeautifulSoup4`
-  - selenium packge `pip3 install selenium`
+  - Selenium packge `pip3 install selenium`
 ## Usage
 `./redbull.sh`
 
