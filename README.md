@@ -11,7 +11,7 @@ Technically it can be used for casual webscrapping and data collection, but the 
   - Selenium
   - webdriver-manager
 ## Usage
-[Download script and example csv](https://github.com/vazome/price-grabber/tree/main/script), set your links and div classes in csv file and for a protected website edit url variable in script.
+[Download script and example csv](https://github.com/vazome/price-grabber/releases/tag/v1.0.0), set your links and div classes in csv file and for a protected website edit url variable in script.
 
 macOS - `bash ./price-grabber.sh`
 
