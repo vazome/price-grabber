@@ -32,8 +32,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     packages=(selenium beautifulsoup4 webdriver-manager)
     for i in ${packages[@]}; do
         if ! pip3 show $i >/dev/null; then
-            pip3 install $i
-            printf "$i has been installed \xE2\x9C\x85\n"
+            pip3 install $i >/dev/null && printf "$i has been installed \xE2\x9C\x85\n"
         elif pip3 show $i >/dev/null; then
             printf "$i presented \xE2\x9C\x85\n"
         else
@@ -43,9 +42,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     sleep 1
 fi
 
-#Executing python from shell with heredoc, that hyphen (-) tells python to read from stdin (EOF).
+read -p $"Source file: " -r SOURCEFILE
+export SOURCEFILE
 
-python3 - <<EOF
+#Executing python from shell with heredoc, that hyphen (-) tells python to read from stdin (EOF).
+python3 - << EOF
 print("Getting RedBull Prices")
 
 try: 
@@ -59,46 +60,37 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import os
 import time
+import re
 
-url = "https://lavka.yandex.ru/213/good/7e447b7e24864298b96f905c0a4c9bf6000300010000"
+print(os.environ['SOURCEFILE'])
 
-resp = requests.get(url)
+url_class_dict = dict()
+file = open(os.getcwd() + "/" + os.environ['SOURCEFILE'], 'r')
+for line in file:
+    line = line.strip("\n")
+    (key, val) = line.split(",")
+    url_class_dict[key] = val
 
-html = resp.content
-parsed_html = BeautifulSoup(html, "html.parser")
-print("YANDEX LAVKA: ", parsed_html.body.find('div', attrs={'class':'a1i9kwxd'}).text)
+for key, value in url_class_dict.items():
+    resp = requests.get(key)
+    html = resp.content
+    parsed_html = BeautifulSoup(html, "html.parser")
+    #Colleting domain name to print that out
+    domain_name = re.search('https?://([A-Za-z_0-9.-]+).*', key)
+    #Printing result with collected domain name
+    print(
+        domain_name.group(1),
+        parsed_html.body.find("div", attrs={"class": value}).text
+    )
 #-----------------------------------------------------------------------------------------------------
-url = "https://market.yandex.ru/product--energeticheskii-napitok-red-bull/168903198?glfilter=15772198%3A0.473~0.473_100419608853&cpa=1&sku=100419608853"
-
-resp = requests.get(url)
-
-html = resp.content
-parsed_html = BeautifulSoup(html, "html.parser")
-print("YANDEX MARKET 12-pack: ", parsed_html.body.find('div', attrs={'class':'_3NaXx _3kWlK'}).text)
-#-----------------------------------------------------------------------------------------------------
-url = "https://www.utkonos.ru/item/3181240/napitok-energeticheskij-red-bull-0-47-l"
-
-resp = requests.get(url)
-
-html = resp.content
-parsed_html = BeautifulSoup(html, "html.parser")
-print("Utkonos: ", parsed_html.body.find('div', attrs={'class':'d-flex align-items-center ng-star-inserted'}).text)
-#-----------------------------------------------------------------------------------------------------
-url = "https://www.perekrestok.ru/cat/206/p/energeticeskij-napitok-red-bull-red-bull-473-ml-3173468"
-
-resp = requests.get(url)
-
-html = resp.content
-parsed_html = BeautifulSoup(html, "html.parser")
-print("PEREKRESTOK: ", parsed_html.body.find('div', attrs={'class':'price-new'}).text)
-#-----------------------------------------------------------------------------------------------------
-# New, convenient method of lauching file was found on the packages pages
+#Chrome zone! For websites with strong protection, launches real chrome with chromedriver using selenium
+#New, convenient method of lauching chromedriver was found on the packages pages
 #https://pypi.org/project/webdriver-manager/ and https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#1-driver-management-software
 
 url = "https://www.ozon.ru/product/red-bull-energeticheskiy-napitok-473-ml-138221686"
 
 #disabling logging to console
-os.environ['WDM_LOG_LEVEL'] = '0'
+os.environ["WDM_LOG_LEVEL"] = "0"
 
 service = Service(executable_path=ChromeDriverManager(cache_valid_range=1).install())
 driver = webdriver.Chrome(service=service)
