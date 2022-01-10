@@ -7,9 +7,9 @@ Technically it can be used for general webscrapping and data collection, but the
 - Linux/WSL
 - Python 3
   - Script prompts user to check and install the following pip3 packages:
-  - BeautifulSoup4 package `pip3 install BeautifulSoup4`
-  - Selenium packge `pip3 install selenium`
-  - webdriver-manager packge `pip3 install webdriver-manager`
+  - BeautifulSoup4
+  - Selenium
+  - webdriver-manager
 ## Usage
 [Download script and example csv](https://github.com/vazome/price-grabber/tree/main/script), set your links and div classes in csv file and for a protected website edit url variable in script.
 
