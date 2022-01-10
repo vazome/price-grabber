@@ -4,7 +4,7 @@ With this tool you can check goods price on variety of online grocers. A fun pro
 Technically it can be used for casual webscrapping and data collection, but the general purpose for me is monitoring of Red Bull prices.
 
 ## Prerequisites
-- Linux/Windows Subsystem for Linux (WSL)
+- Linux/Windows Subsystem for Linux 2 (WSL 2)
 - Python 3
   - Script prompts user to check and install the following pip3 packages:
   - BeautifulSoup4
