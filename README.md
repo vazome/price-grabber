@@ -5,12 +5,7 @@ This is a fun project originating from a bet I made with a friend. With this too
 - Python 3
   - BeautifulSoup4 package `pip3 install BeautifulSoup4`
   - selenium packge `pip3 install selenium`
-- chromedriver
-  - Same version as your browser, if Chrome version is 97 then chromedriver must be 97.X https://chromedriver.storage.googleapis.com/index.html
 ## Usage
 `./redbull.sh`
 
-
-![file](https://github.com/vazome/price-grabber/blob/main/grabber-demo.mp4)
-
-![Screenshot 2022-01-07 at 00 09 45](https://user-images.githubusercontent.com/46573198/148452871-1e94d0fa-f31c-4745-91de-a7b76fdd1b01.png)
+https://user-images.githubusercontent.com/46573198/148727983-e3745679-0aee-443c-aea2-be780673de95.mp4
