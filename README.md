@@ -3,7 +3,7 @@ This is a fun project originating from a bet I made with a friend. With this too
 
 ## Prerequisites
 - Python 3
-  - Script prompts user to check and install the following pip3 packages
+  - Script prompts user to check and install the following pip3 packages:
   - BeautifulSoup4 package `pip3 install BeautifulSoup4`
   - Selenium packge `pip3 install selenium`
   - webdriver-manager packge `pip3 install webdriver-manager`
