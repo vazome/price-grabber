@@ -1,4 +1,4 @@
-# redbull-price-grabber
+# price-grabber
 This is a fun project originating from a bet I made with a friend. With this tool you can check price of goods on variety of online grocers.
 
 ## Prerequisites
