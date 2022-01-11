@@ -1,12 +1,14 @@
 #!/bin/bash
 
 #Stop the script if there is a sign of: unset variable to be called, non-zero exit status or piping from command with said status.
-#Basically it's a kill switch in case of any error.
+#Basically it's a kill switch in case of any error, please read if you interested http://redsymbol.net/articles/unofficial-bash-strict-mode/
+
+set -euo pipefail
 
 exec > >(tee -a $PWD/redbull-result.log) 2>&1
-
 #Making log file more informative by additing timestamp
 currentdate=$(date '+%Y-%m-%d %H:%M:%S')
+
 echo "Script launch: $currentdate"
 
 read -p $"Would you like to check for missing prerequisites (Y/N): " -n 1 -r
@@ -97,12 +99,15 @@ driver = webdriver.Chrome(service=service)
 driver.get(url)
 driver.find_element(By.CSS_SELECTOR, "input.ui-g.ui-g2").send_keys("19171999")
 driver.find_element(By.CSS_SELECTOR, "span.ui-b3.ui-b5").click()
-time.sleep(3)
+time.sleep(5)
 html = driver.page_source
 
+score = ""
 parsed_html = BeautifulSoup(html, "html.parser")
-prices = parsed_html.body.find("div", class_="c2h3 c2h9 c2e7").text
-print("OZON: ", prices)
+prices = parsed_html.body.find_all("div",  {"class": ["c2h3 c2h9 c2e7", "jm9 j0n n1j"]})
+for price in prices:
+        score = score + price.text
+print("OZON:", score)
 EOF
 
 echo "Script finish: $currentdate"
