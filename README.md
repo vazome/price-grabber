@@ -5,9 +5,9 @@ Technically it can be used for casual webscrapping and data collection, but the 
 ![image](https://user-images.githubusercontent.com/46573198/148906394-c99bce72-95e1-433a-9a53-178b664030c4.png)
 
 ## Prerequisites
-- Linux/Windows Subsystem for Linux 2 (WSL 2)
+- Linux or Windows Subsystem for Linux 2 (WSL 2), `bash` presence
 - Python 3
-  - Script prompts user to check and install the following pip3 packages:
+- Script prompts user to check and install the following pip3 packages:
   - BeautifulSoup4
   - Selenium
   - webdriver-manager
