@@ -2,6 +2,7 @@
 With this tool you can check goods price on variety of online grocers. A fun project originating from a bet I made with a friend.
 
 Technically it can be used for casual webscrapping and data collection, but the general purpose for me is monitoring of Red Bull prices.
+
 ![image](https://user-images.githubusercontent.com/46573198/148906394-c99bce72-95e1-433a-9a53-178b664030c4.png)
 
 ## Prerequisites
